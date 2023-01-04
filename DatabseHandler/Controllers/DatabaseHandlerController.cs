@@ -5,9 +5,13 @@ namespace DatabaseHandler.Controllers
     public class DatabaseHandlerController : Controller
     {
         
-        public Dbset<Product> ViewDatabase()
+        public void ViewDatabase()
         {
-            return View();
+            View();
+        }
+        public void UpdateDatabase()
+        {
+            View();
         }
     }
 }
