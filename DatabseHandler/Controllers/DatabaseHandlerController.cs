@@ -4,7 +4,8 @@ namespace DatabaseHandler.Controllers
 {
     public class DatabaseHandlerController : Controller
     {
-        public IActionResult Index()
+        
+        public Dbset<Product> ViewDatabase()
         {
             return View();
         }
