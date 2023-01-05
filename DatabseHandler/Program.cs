@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using DatabseHandler.Models.ProductsContext;
+//using DatabseHandler.Models.ProductsContext;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,23 +12,23 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-builder.Services.AddDbContext<ProductsContext>(options =>
-{
-    if (app.Environment.IsDevelopment())
-    {
-        var folder = Environment.SpecialFolder.LocalApplicationData;
-        var path = Environment.GetFolderPath(folder);
-        var dbPath = System.IO.Path.Join(path, "Products.db");
-        options.UseSqlite($"Data Source={dbPath}");
-        options.EnableDetailedErrors();
-        options.EnableSensitiveDataLogging();
-    }
-    else
-    {
-        var cs = builder.Configuration.GetConnectionString("ProductsContext");
-        options.UseSqlServer(cs);
-    }
-});
+//builder.Services.AddDbContext<ProductsContext>(options =>
+//{
+//    if (app.Environment.IsDevelopment())
+//    {
+//        var folder = Environment.SpecialFolder.LocalApplicationData;
+//        var path = Environment.GetFolderPath(folder);
+//        var dbPath = System.IO.Path.Join(path, "Products.db");
+//        options.UseSqlite($"Data Source={dbPath}");
+//        options.EnableDetailedErrors();
+//        options.EnableSensitiveDataLogging();
+//    }
+//    else
+//    {
+//        var cs = builder.Configuration.GetConnectionString("ProductsContext");
+//        options.UseSqlServer(cs);
+//    }
+//});
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
