@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -9,13 +11,23 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+builder.Services.AddDbContext<ProductsContext>(options =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
+    if (app.Environment.IsDevelopment())
+    {
+        var folder = Environment.SpecialFolder.LocalApplicationData;
+        var path = Environment.GetFolderPath(folder);
+        var dbPath = System.IO.Path.Join(path, "Products.db");
+        options.UseSqlite($"Data Source={dbPath}");
+        options.EnableDetailedErrors();
+        options.EnableSensitiveDataLogging();
+    }
+    else
+    {
+        var cs = builder.Configuration.GetConnectionString("ProductsContext");
+        options.UseSqlServer(cs);
+    }
+});
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
