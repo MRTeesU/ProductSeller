@@ -16,7 +16,6 @@ public class ProductsContext : DbContext
 
         builder.Entity<Product>(x =>
         {
-            x.Property(c => c.Id).IsRequired();
             x.Property(c => c.Name).IsRequired();
             x.Property(c => c.Description).IsRequired();
             x.Property(c => c.Price).IsRequired();

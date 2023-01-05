@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using DatabseHandler.Models.ProductsContext;
 
 var builder = WebApplication.CreateBuilder(args);
 
